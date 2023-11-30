@@ -1,0 +1,368 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    user-select: none;
+}
+
+html, body {
+    width: auto!important; 
+    overflow-x: hidden!important;
+    overflow-y: hidden!important;
+} 
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: white ;
+    transition: background-color 0s 600000s, color 0s 600000s;
+}
+
+input:-internal-autofill-selected {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+@font-face {
+    font-family: K2D;
+    src: url(../fonts/K2D/K2D-Medium.ttf) format("truetype");
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+}
+
+body {
+    font-family: K2D, sans-serif;
+}
+
+.layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../IMG/login/Login_BG.jpg);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_form {
+    margin: 5% 0 0 0;
+}
+
+.fields_container {
+    min-width: calc(var(--index) * 45);
+    min-height: calc(var(--index) * 20);
+    background-image: url(../IMG/login/underscore.png);
+    background-size: cover;
+    background-position: center;
+}
+
+.fields_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.field:not(:first-child) {
+    margin-top: calc(var(--index) / 0.145);
+}
+
+.fields_container input[type=text] {
+    width: 400px;
+    padding-bottom: 5px;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    text-align:  center;
+
+    font-size: calc(var(--index) * 1.8);
+    color: white;
+}
+
+.fields_container input[type=text]::placeholder {
+    color: white;
+    font-family: K2D, sans-serif;
+}
+
+.fields_container input[type=password] {
+    width: 400px;
+    padding-bottom: 5px;
+    border: 0;
+    outline: none;
+    background-color: transparent;
+    text-align:  center;
+
+    font-size: calc(var(--index) * 1.8);
+    color: white;
+}
+
+.fields_container input[type=password]::placeholder {
+    color: white;
+    font-family: K2D, sans-serif;
+}
+
+
+input[type=password]::-ms-reveal,
+input[type=password]::-ms-clear {
+    display: none;
+}
+
+.checkbox_container {
+    position: relative;
+    bottom: calc(var(--index) * 3.5);
+    left: calc(var(--index) * 1.5);
+    width: calc(var(--index) * 10);
+    display: block;
+    position: relative;
+    padding-left: calc(var(--index) * 1.2);
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: calc(var(--index) * 0.8);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-left: calc(var(--index) * 6.5);
+    color: white;
+}
+
+.checkbox_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: calc(var(--index) / 1.25);
+    width: calc(var(--index) / 1.25);
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: transparent;
+    transition-duration: .5s;
+}
+
+.checkbox_container:hover input ~ .checkmark {
+    background-color: rgba(204, 204, 204, 0.37);
+}
+
+.checkbox_container input:checked ~ .checkmark {
+    background-color: rgba(0, 0, 0, 0.616);
+}
+
+.checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox_container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox_container .checkmark:after {
+    left: calc(var(--index) / 5.25);
+    top: calc(var(--index) / 6);
+    width: calc(var(--index) / 5);
+    height: calc(var(--index) / 5);
+    border:solid wheat;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.button_container {
+    position: relative;
+    bottom: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.confirm_button {
+    width: calc(var(--index) * 15);
+    height: calc(var(--index) * 7);
+    background: transparent;
+    border: 0;
+    transition-duration: .5s;
+    cursor: pointer;
+}
+
+.confirm_button:hover {
+    filter: grayscale(50%);
+}
+
+.confirm_button img {
+    width: calc(var(--index) * 15);
+    height: calc(var(--index) * 7);
+    pointer-events: none;
+}
+
+.extra_links {
+    position: relative;
+    bottom: calc(var(--index) * 3);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    font-size: calc(var(--index) * 1.5);
+    text-align: center;
+}
+
+.extra_links a {
+    width: calc(var(--index) * 16);
+    text-decoration: none;
+    color: white;
+    transition-duration: .5s;
+}
+
+.extra_links a:hover {
+    color: wheat;
+}
+
+.link:not(:first-child) {
+    margin-top: calc(var(--index) * 1.25);
+}
+
+.mobile_login_form {
+    display: none;
+}
+
+@media (max-width: 1250px) {
+    
+    /* .login_form {
+        display: none;
+    } */
+    
+    .login_form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        background-color: rgba(212, 203, 186, 50%);;
+        border-radius: 8px;
+
+        width: calc(var(--index) * 20);
+        height: 650px;
+    
+        padding: 0 20px;
+    
+    }
+
+    .fields_container {
+        background-image: none;
+    }
+
+    .field:not(:first-child) {
+        margin-top: calc(var(--index) / 0.4);
+    }
+    
+
+    .fields_container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .fields_container input[type=text] {
+        width: calc(var(--index) * 15);
+        padding-bottom: 5px;
+        border: 0;
+        border-bottom: 2px solid white;
+        outline: none;
+        background-color: transparent;
+        text-align:  center;
+    
+        font-size: calc(var(--index) * 2);
+        color: white;
+    }
+    
+    .mobile_login_form input[type=text]::placeholder {
+        font-family: K2D, sans-serif;
+        color: white;
+    }
+    
+    .fields_container input[type=password] {
+        width: calc(var(--index) * 15);
+        padding-bottom: 5px;
+        border: 0;
+        border-bottom: 2px solid white;
+        outline: none;
+        background-color: transparent;
+        text-align:  center;
+    
+        font-size: calc(var(--index) * 2);
+        color: white;
+    }
+    
+    .mobile_login_form input[type=password]::placeholder {
+        font-family: K2D, sans-serif;
+        color: white;
+    }
+
+    .checkbox_container {
+        position: relative;
+        /* top: calc(var(--index) * 1.5); */
+        left: calc(var(--index) * 12);
+        width: calc(var(--index) * 20);
+        display: block;
+        padding-left: calc(var(--index) * 2);
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: calc(var(--index) * 1.5);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        margin-left: calc(var(--index) * 1.8);
+        color: white;
+    }
+
+    .checkbox_container .checkmark:after {
+        width: calc(var(--index) / 2);
+        height: calc(var(--index) / 2);
+    }
+
+    .checkmark {
+        height: calc(var(--index) / .8);
+        width: calc(var(--index) / .8);
+        top: 6px;
+    }
+
+    .button_container {
+        position: relative;
+        top: calc(var(--index) * -4);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    
+    }
+    
+    .extra_links {
+        position: relative;
+        top: calc(var(--index) * -3);
+        bottom: calc(var(--index) * 0);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    
+        font-size: calc(var(--index) * 1.2);
+        text-align: center;
+    }
+}

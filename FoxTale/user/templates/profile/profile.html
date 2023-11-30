@@ -1,0 +1,96 @@
+{% extends "header.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'profile/profile.css' %}">
+    <title>Profile</title>
+</head>
+<body>
+    <div class="layer">
+        <div class="introduction_block">
+            <h2>WELCOME TO YUOR TEMPLE -{{ user.username }}-</h2>
+        </div>
+
+        <div class="main_content">
+            <div class="list_containers">
+                <div class="item_container">
+                    <div class="discription_block">
+                        <p>If you want to change your password, fill out the form</p>
+                    </div>
+
+                    <div class="change_password_block">
+                        <form method="POST" autocomplete="off">
+                            {% csrf_token %}
+                            {{ form_change_password.old_password }}
+                            {{ form_change_password.new_password1 }}
+                            {{ form_change_password.new_password2 }}
+                            <button class="button_save" type="submit">SAVE CHANGES</button>
+                        </form>
+                    </div>
+                </div>
+    
+                <div class="item_container">
+                    <div class="discription_block">
+                        <p>This is your personal information</p>
+                    </div>
+    
+                    <div class="change_password_block">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="date_birth">
+                                {% if user_profile.month == '1' %}
+                                    <p>JANUARY {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '2' %}
+                                    <p>FEBRUARY {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '3' %}
+                                    <p>MARCH {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}         
+                                {% if user_profile.month == '4' %}
+                                    <p>APRIL {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '5' %}
+                                    <p>MAY {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '6' %}
+                                    <p>JUNE {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}    
+                                {% if user_profile.month == '7' %}
+                                    <p>JULY {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '8' %}
+                                    <p>AUGUST {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '9' %}
+                                    <p>SEPTEMBER {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '10' %}
+                                    <p>OCTOBER {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '11' %}
+                                    <p>NOVEMBER {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}
+                                {% if user_profile.month == '12' %}
+                                    <p>DECEMBER {{ user_profile.day }} {{ user_profile.year }}</p>
+                                {% endif %}                                                                                                                                                              
+                            </div>
+                            {{ form_change_email.new_email }}
+                            
+                            {% if email_exist_error %}
+                                <p>{{ email_exist_error }}</p>
+                            {% endif %}
+                            <button class="button_save" type="submit">SAVE CHANGES</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock content %}

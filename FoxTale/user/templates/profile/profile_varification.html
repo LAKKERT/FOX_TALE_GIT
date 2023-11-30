@@ -1,0 +1,32 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'profile/varification_page.css' %}">
+    <title>VARIFICATION</title>
+</head>
+<body>
+    <main>
+        <div class="code_container">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="hint">
+                    <h2>Confirmation required</h2>
+                    <p style="margin-top: 15px;">Enter the code <br> that we sent to the mail</p>
+                </div>
+
+                <div class="code_fild">
+                    <input class="varification_code_field" type="text" id="verification_code_form" name="verification_code_form" placeholder="CODE" maxlength="5" required>
+                    <img style="width: 400px; margin-top: 10px;" src="{% static 'IMG/varification/line.png' %}">
+                </div>
+
+                <button class="submit_button" type="submit">CONTINUE</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
+{% endblock content %}

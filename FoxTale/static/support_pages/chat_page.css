@@ -19,6 +19,7 @@ html,
 body {
     height: 100%;
     font-family: K2D, sans-serif;
+    padding-top: 50px;
 }
 
 .layer {
@@ -41,7 +42,7 @@ main {
     width: 100%;
     display: grid;
     grid-template-columns: 20% auto 20%;
-    grid-template-rows: auto 17%;
+    grid-template-rows: auto 16%;
     padding: 0 5%;
 }
 
@@ -257,4 +258,8 @@ main {
     .message_fields {
         margin-top: calc(var(--index) * -3);
     }
+}
+
+footer {
+    display: none;
 }

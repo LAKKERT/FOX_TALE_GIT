@@ -19,7 +19,7 @@
 
 main {
     display: flex;
-    min-height: 72.6vh;
+    min-height: 69.6vh;
     align-items: center;
     flex-direction: column;
     padding-top: 70px;

@@ -14,23 +14,25 @@ from django.http import HttpResponseForbidden
 # Create your views here.
 
 def CreateRoomView(request):
-    if request.method == 'POST':
-        if request.POST.get('reason_title') == "" or request.POST.get('reason_title') == None:
-            print('4')
-            render(request, 'create_chat.html', {'error': True})
-        form = CreateRoom(request.POST)
-        if form.is_valid():
-            chat = form.save(commit=False)
-            chat.author = request.user
-            chat.save()
-            
-            chat.listUsers.add(request.user)
-            chat.save()
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            if request.POST.get('reason_title') == "" or request.POST.get('reason_title') == None:
+                print('4')
+                render(request, 'create_chat.html', {'error': True})
+            form = CreateRoom(request.POST)
+            if form.is_valid():
+                chat = form.save(commit=False)
+                chat.author = request.user
+                chat.save()
+                
+                chat.listUsers.add(request.user)
+                chat.save()
 
-            return redirect('support_chat', pk=chat.pk)
+                return redirect('support_chat', pk=chat.pk)
+        else:
+            form = CreateRoom()
     else:
-        form = CreateRoom()
-
+        return redirect('home')
 
     return render(request, 'create_chat.html', {'form': form})
 
@@ -39,10 +41,13 @@ class ChatListView(ListView):
     template_name = 'list_of_chats.html'
 
 def ChatRoomDetailView(request, pk):
-    try:
-        listdetail = SupportModel.objects.get(pk=pk)
-    except SupportModel.DoesNotExist:
-        return HttpResponse("Object doesn't exist", status=404)
+    if request.user.is_authenticated:
+        try:
+            listdetail = SupportModel.objects.get(pk=pk)
+        except SupportModel.DoesNotExist:
+            return HttpResponse("Object doesn't exist", status=404)
+    else:
+        return redirect('home')
     
     listUsersNames = [user.username for user in listdetail.listUsers.all()]
     listUsersId = listdetail.listUsers.all()
@@ -77,10 +82,16 @@ def ChatRoomDetailView(request, pk):
     return render(request, 'chat_room.html', {'form': form, 'messages': messages ,'listdetail': listdetail, 'listUsers': listUsersNames})
 
 def users_requests(request):
-    user = User.objects.get(username=request.user)
-    user_requests = SupportModel.objects.filter(author=user)
-    return render(request, 'user_requests.html', {'user_requests': user_requests})
+    if request.user.is_authenticated:
+        user = User.objects.get(username=request.user)
+        user_requests = SupportModel.objects.filter(author=user)
+        return render(request, 'user_requests.html', {'user_requests': user_requests})
+    else:
+        return redirect('home')
 
 def completed_requests(request):
-    completed_requests = SupportModel.objects.filter(status=True)
-    return render(request, 'completed_requests.html', {'completed_requests': completed_requests})
+    if request.user.is_authenticated:
+        completed_requests = SupportModel.objects.filter(status=True)
+        return render(request, 'completed_requests.html', {'completed_requests': completed_requests})
+    else:
+        return redirect('home')

@@ -39,6 +39,8 @@ body {
 
     transition: opacity 1s;
     transition-duration: 1s;
+
+    padding: 50px;
 }
 
 main {
